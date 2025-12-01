@@ -1,0 +1,40 @@
+#services:
+#  postgres:
+#    image: 'postgres:latest'
+#    environment:
+#      - 'POSTGRES_DB=postgresdb'
+#      - 'POSTGRES_USER=user'
+#      - 'POSTGRES_PASSWORD=userpassword'
+#    ports:
+#      - '5432'
+#
+#  pgadmin:
+#    image: 'elestio/pgadmin:latest'
+#    environment:
+#      - 'PGADMIN_DEFAULT_EMAIL=admin@email.com'
+#      - 'PGADMIN_DEFAULT_PASSWORD=adminpassword'
+#      - 'PGADMIN_LISTEN_PORT=8080'
+#    ports:
+#      - '8080'
+
+
+services:
+  app:
+    image: 'webapp:latest'
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgresdb
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=userpassword
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  db:
+    image: 'postgres:latest'
+    container_name: db
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=userpassword
