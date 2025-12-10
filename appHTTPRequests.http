@@ -1,0 +1,15 @@
+POST http://localhost:8080/api/pedidos
+Content-Type: application/json
+
+{
+  "calificacion": "BUENA",
+  "comentarios": "Vacio",
+  "estado": "FINALIZADO"
+}
+
+###
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###

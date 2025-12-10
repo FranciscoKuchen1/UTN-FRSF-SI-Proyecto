@@ -1,0 +1,10 @@
+services:
+  db:
+    image: 'postgres:18.1-alpine'
+    container_name: postgresdb
+    environment:
+      - POSTGRES_USER=postgresuser
+      - POSTGRES_PASSWORD=postgresuserpassword
+      - POSTGRES_DB=postgresdb
+    ports:
+      - "5432:5432"
